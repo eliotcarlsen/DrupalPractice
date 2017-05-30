@@ -24,10 +24,6 @@ function say_farewell(){
 function greeting_user_login(){
     $_GET['destination'] = 'hello_friend';
 }
-function greeting_user_logout(&$edit, $account){
-    echo '<pre>';
-    var_dump($edit);
-    echo '</pre>';
-    exit;
+function greeting_user_logout(){
     $_GET['destination'] = 'farewell';
 }

@@ -8,6 +8,12 @@ function sum_menu(){
         'access callback' => TRUE,
         'type' => MENU_NORMAL_ITEM,
     );
+    $items['success'] = array(
+        'title' => 'Success',
+        'type' => MENU_CALLBACK,
+        'access callback' => TRUE,
+        'page callback' => 'sum_success',
+    );
     return $items;
 }
 function sum_form(){
@@ -27,4 +33,16 @@ function sum_form(){
         '#value' => 'Calculate Sum',
     );
     return $form;
+}
+function sum_form_submit($form, &$form_state){
+    $first_number = $form_state['values']['left_number'];
+    $second_number = $form_state['values']['right_number'];
+    $sum = $first_number + $second_number;
+    $_SESSION['sum_output'] = $sum;
+    $form_state['redirect'] = 'success';
+}
+
+function sum_success(){
+    $answer = $_SESSION['sum_output'];
+    return "You calculated a sum! the answer is $answer!";
 }
